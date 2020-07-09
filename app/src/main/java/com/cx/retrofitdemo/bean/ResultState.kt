@@ -1,10 +1,10 @@
-package com.cx.retrofitdemo.bean;
+package com.cx.retrofitdemo.bean
 
 /**
  * @ClassName: ResultState
  * @Author: CX
- * @Date: 2020/7/6 16:39
+ * @Date: 2020/7/9 11:03
  */
-public enum ResultState {
+enum class ResultState {
     LOADING,  EMPTY,NETERROR,ERROR,SUCCESS, DEFAULT
 }
