@@ -1,11 +1,12 @@
 package com.cx.retrofitdemo.bean
+
 import com.google.gson.annotations.SerializedName
 
 
 /**
  * @ClassName: BaseBean
  * @Author: CX
- * @Date: 2020/7/9 11:04
+ * @Date: 2020/7/9 11:26
  */
 data class BaseBean<T>(
     @SerializedName("Code")
@@ -20,7 +21,7 @@ data class BaseBean<T>(
     val pM: PM = PM(),
     @SerializedName("Success")
     val success: Boolean = false, // true
-    var resultState :ResultState= ResultState.DEFAULT
+    val resultState: ResultState = ResultState.DEFAULT
 ) {
     data class PM(
         @SerializedName("PageCount")
