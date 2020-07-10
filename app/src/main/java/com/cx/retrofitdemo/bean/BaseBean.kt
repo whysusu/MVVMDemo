@@ -21,7 +21,7 @@ data class BaseBean<T>(
     val pM: PM = PM(),
     @SerializedName("Success")
     val success: Boolean = false, // true
-    val resultState: ResultState = ResultState.DEFAULT
+    var resultState: ResultState = ResultState.DEFAULT
 ) {
     data class PM(
         @SerializedName("PageCount")
@@ -33,4 +33,9 @@ data class BaseBean<T>(
         @SerializedName("TotalCount")
         val totalCount: Int = 0 // 79
     )
+
+    override fun toString(): String {
+        return "BaseBean(code=$code, `data`=$`data`, errors='$errors', msg='$msg', pM=$pM, success=$success, resultState=$resultState)"
+    }
+
 }

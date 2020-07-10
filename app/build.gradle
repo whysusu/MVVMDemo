@@ -54,7 +54,8 @@ dependencies {
     // 基础组件
     implementation 'org.kodein.di:kodein-di-generic-jvm:5.2.0'
     // Android扩展组件
-    implementation 'org.kodein.di:kodein-di-framework-android-core:5.2.0'
+//    implementation 'org.kodein.di:kodein-di-framework-android-core:5.2.0'
+    implementation 'org.kodein.di:kodein-di-framework-android-x:5.2.0'
 
 
 

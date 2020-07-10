@@ -11,7 +11,7 @@ import com.cx.retrofitdemo.bean.ResultState
  * @Author: CX
  * @Date: 2020/7/2 10:32
  */
-class BaseViewModel(var retrofitAPI: RetrofitAPI) : ViewModel() {
+open class BaseViewModel(var retrofitAPI: RetrofitAPI) : ViewModel() {
 
     suspend fun <T> getBaseData(url:String,map: HashMap<String, String>?=null): BaseBean<T> {
         return requestHttpFromIO<T>(url, map)

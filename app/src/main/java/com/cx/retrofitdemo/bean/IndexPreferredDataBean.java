@@ -588,4 +588,53 @@ public class IndexPreferredDataBean {
         }
     }
 
+    @Override
+    public String toString() {
+        return "IndexPreferredDataBean{" +
+                "ID=" + ID +
+                ", CertificationID='" + CertificationID + '\'' +
+                ", HouseType=" + HouseType +
+                ", Price=" + Price +
+                ", UnitPrice=" + UnitPrice +
+                ", CountF=" + CountF +
+                ", CountT=" + CountT +
+                ", CountW=" + CountW +
+                ", ProducingArea=" + ProducingArea +
+                ", Title='" + Title + '\'' +
+                ", ImageUrl='" + ImageUrl + '\'' +
+                ", DecorateTypeName='" + DecorateTypeName + '\'' +
+                ", OrientationName='" + OrientationName + '\'' +
+                ", PurposeTypeName='" + PurposeTypeName + '\'' +
+                ", CompletionDateStr='" + CompletionDateStr + '\'' +
+                ", ListedTimeStr='" + ListedTimeStr + '\'' +
+                ", HasElevator='" + HasElevator + '\'' +
+                ", LadderHouseholds='" + LadderHouseholds + '\'' +
+                ", LastEditDateStr='" + LastEditDateStr + '\'' +
+                ", LouCengStr='" + LouCengStr + '\'' +
+                ", PriceUnit='" + PriceUnit + '\'' +
+                ", Longitude=" + Longitude +
+                ", Latitude=" + Latitude +
+                ", XQAddress='" + XQAddress + '\'' +
+                ", Furniture='" + Furniture + '\'' +
+                ", Payment='" + Payment + '\'' +
+                ", BuildingID=" + BuildingID +
+                ", BuildingName='" + BuildingName + '\'' +
+                ", AreaName='" + AreaName + '\'' +
+                ", ShangQuanName='" + ShangQuanName + '\'' +
+                ", ListedTime='" + ListedTime + '\'' +
+                ", LastEditDate='" + LastEditDate + '\'' +
+                ", HouseGroupImg=" + HouseGroupImg +
+                ", MarkNameAndColor=" + MarkNameAndColor +
+                ", AvgPriceUnit='" + AvgPriceUnit + '\'' +
+                ", IsVrHouse=" + IsVrHouse +
+                ", IsTvHouse=" + IsTvHouse +
+                ", Name='" + Name + '\'' +
+                ", BuildingAvgPrice='" + BuildingAvgPrice + '\'' +
+                ", Cover_Photo='" + Cover_Photo + '\'' +
+                ", ImgMark='" + ImgMark + '\'' +
+                ", ProjectTypeName='" + ProjectTypeName + '\'' +
+                ", AreaRange='" + AreaRange + '\'' +
+                ", FeaturesNameAndColor=" + FeaturesNameAndColor +
+                '}';
+    }
 }
