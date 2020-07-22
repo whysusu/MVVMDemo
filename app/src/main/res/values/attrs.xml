@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Clock">
+        <attr name="scaleColor" format="color" />
+        <attr name="circleColor" format="color" />
+        <attr name="defScaleColor" format="color" />
+        <attr name="hourHandColor" format="color" />
+        <attr name="minuteHandColor" format="color" />
+        <attr name="secondHandColor" format="color" />
+        <attr name="centerIcon" format="reference" />
+        <attr name="isPointer" format="boolean" />
+    </declare-styleable>
+
+</resources>
