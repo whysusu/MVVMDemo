@@ -5,12 +5,6 @@ import com.blankj.utilcode.util.ToastUtils
 import com.cx.retrofitdemo.bean.BaseBean
 import com.cx.retrofitdemo.bean.IndexPreferredDataBean
 import com.cx.retrofitdemo.bean.ResultState
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import org.kodein.di.Copy
-import org.kodein.di.Kodein
-import org.kodein.di.KodeinAware
-import org.kodein.di.android.closestKodein
 import org.kodein.di.android.retainedKodein
 
 
@@ -23,8 +17,8 @@ class ApiRequest() {
 
 
     /**这里处理请求中返回的公共部分，来判断数据返回的状态**/
-    suspend fun <T> requestHttpListFromIO(url: String): BaseBean<T> {
-        var baseBean = BaseBean<T>()
+    suspend fun <T> requestHttpListFromIO(url: String): BaseBean<String> {
+        var baseBean = BaseBean<String>(data = "")
         baseBean.resultState = ResultState.LOADING
         try {
 //            baseBean = withContext(Dispatchers.IO) {}
@@ -48,7 +42,7 @@ class ApiRequest() {
 
 
     /**这里来调用公共接口，将自己需要返回的类型传到公共请求中**/
-    suspend fun getNHList(url:String): BaseBean<IndexPreferredDataBean> {
+    suspend fun getNHList(url:String): BaseBean<String> {
 
         var beanList =
             requestHttpListFromIO<IndexPreferredDataBean>(url)

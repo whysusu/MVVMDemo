@@ -1,19 +1,17 @@
 package com.cx.retrofitdemo.bean
 
 import com.google.gson.annotations.SerializedName
-import java.util.*
-
 
 /**
- * @ClassName: BaseBean
+ * @ClassName: Indexbean
  * @Author: CX
- * @Date: 2020/7/9 11:26
+ * @Date: 2020/7/24 13:14
  */
-data class BaseBean<T>(
+class Indexbean(
     @SerializedName("Code")
     val code: Int = 0, // 2000
     @SerializedName("Data")
-    val data: T ,
+    val `data`: MutableList<IndexPreferredDataBean> = mutableListOf(),
     @SerializedName("Errors")
     val errors: String = "", // null
     @SerializedName("Msg")
@@ -24,7 +22,6 @@ data class BaseBean<T>(
     val success: Boolean = false, // true
     var resultState: ResultState = ResultState.DEFAULT
 ) {
-
     data class PM(
         @SerializedName("PageCount")
         val pageCount: Int = 0, // 8
@@ -37,5 +34,3 @@ data class BaseBean<T>(
     )
 
 }
-
-
