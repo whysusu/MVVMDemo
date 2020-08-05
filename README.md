@@ -5,3 +5,7 @@
 
 同一activity下的两个fragment实现数据共享，需要注意的是，我定义了一个baseViewModel来处理接口调用的数据处理逻辑，在编写自己的ViewModel时，一定要继承baseViewModel，并且，在初始化自己的ViewModel时使用的LifecycleOwner一定得是外层activity，不然无法实现数据共享
 
+
+#20200805
+成功集成databinding，liveData，kotlin协程，viewModle，目前只有数据展示，还没做交互处理，后面完善
+
