@@ -25,7 +25,7 @@ object RetrofitManager {
     }
 
     private var retrofit: Retrofit = Retrofit.Builder()
-//        .baseUrl(NewHouseURl)
+        .baseUrl(NewHouseURl)
         .addConverterFactory(GsonConverterFactory.create())
         .client(getHttpClient())
         .build()

@@ -8,10 +8,29 @@
     <TextView
         android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:text="第一页··········"
         android:textColor="@color/btn_filled_blue_bg_disabled"
+        app:layout_constraintBottom_toTopOf="@+id/secondTV"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1" />
+
+    <TextView
+        android:id="@+id/secondTV"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="这里测试触发按钮拿数据"
         app:layout_constraintBottom_toBottomOf="parent"
-      />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/content"
+        app:layout_constraintVertical_weight="1" />
+
+    <Button
+        android:id="@+id/jumpBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="这里是跳转按钮"
+        app:layout_constraintRight_toRightOf="@+id/secondTV"
+        app:layout_constraintTop_toTopOf="@+id/secondTV" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@ import android.os.Build
 
 import android.util.Pair
 import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 import com.cx.retrofitdemo.Constants
 
 import com.blankj.utilcode.util.EncryptUtils
@@ -32,7 +33,8 @@ class KotlinUtils {
          * 获取随机数
          */
         fun getRandom(): String {
-            var randString: String = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            var randString: String =
+                "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
             var charArray = randString.toCharArray()
             var stringBuilder: StringBuilder = StringBuilder()
             var random: Random = Random(System.currentTimeMillis())
@@ -61,7 +63,10 @@ class KotlinUtils {
             try {
                 serial = android.os.Build::class.java.getField("SERIAL").get(null).toString()
                 //API>=9 使用serial号
-                return UUID(m_szDevIDShort.hashCode().toLong(), serial.hashCode().toLong()).toString()
+                return UUID(
+                    m_szDevIDShort.hashCode().toLong(),
+                    serial.hashCode().toLong()
+                ).toString()
             } catch (exception: Exception) {
                 //serial需要一个初始化
                 serial = "serial" // 随便一个初始化
@@ -74,8 +79,14 @@ class KotlinUtils {
         /**
          * 获取签名
          */
-        fun getSign(owinRand: String, owinTs: String, owinUid: String, securityKey: String): String {
-            val params = TreeSet(Comparator<Pair<String, String>> { o1, o2 -> o1.first.compareTo(o2.first) })
+        fun getSign(
+            owinRand: String,
+            owinTs: String,
+            owinUid: String,
+            securityKey: String
+        ): String {
+            val params =
+                TreeSet(Comparator<Pair<String, String>> { o1, o2 -> o1.first.compareTo(o2.first) })
             params.add(Pair(Constants.OWIN_RAND, owinRand))
             params.add(Pair(Constants.OWIN_TS, owinTs))
             params.add(Pair(Constants.OWIN_UID, owinUid))
@@ -87,7 +98,8 @@ class KotlinUtils {
             }
             stringBuilder.deleteCharAt(stringBuilder.length - 1)
 
-            return EncryptUtils.encryptMD5ToString(stringBuilder.toString().toByteArray()).toLowerCase()
+            return EncryptUtils.encryptMD5ToString(stringBuilder.toString().toByteArray())
+                .toLowerCase()
         }
 
 
@@ -97,9 +109,9 @@ class KotlinUtils {
                 options.placeholder(defimage)
 
                 Glide.with(context)
-                        .load(url)
-                        .apply(options)
-                        .into(view)
+                    .load(url)
+                    .apply(options)
+                    .into(view)
             } catch (e: Exception) {
 
             }
@@ -111,9 +123,9 @@ class KotlinUtils {
                 options.circleCrop().placeholder(defimage)
 
                 Glide.with(context)
-                        .load(url)
-                        .apply(options)
-                        .into(view)
+                    .load(url)
+                    .apply(options)
+                    .into(view)
             } catch (e: Exception) {
 
             }
@@ -165,7 +177,6 @@ class KotlinUtils {
         }
 
 
-
         @SuppressLint("SimpleDateFormat")
                 /**
                  * 获取当前时间
@@ -193,6 +204,7 @@ class KotlinUtils {
 
             return Date()
         }
+
 
     }
 }

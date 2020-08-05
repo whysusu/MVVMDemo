@@ -13,7 +13,7 @@ import java.lang.reflect.Type
 
 
 /**
- * @ClassName: NHViewModel
+ * @ClassName: BaseViewModel ViewModel基类，这里统一处理网络请求返回的数据相关判断
  * @Author: CX
  * @Date: 2020/7/2 10:32
  */
@@ -75,11 +75,14 @@ open class BaseViewModel(var retrofitAPI: RetrofitAPI) : ViewModel() {
 
 
 class BaseViewModelFactory(
-    private val retrofitAPI: RetrofitAPI
+    private val retrofitAPI: RetrofitAPI,
+    private val type: Int
 ) : ViewModelProvider.Factory {
 
     @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return BaseViewModel(retrofitAPI) as T
+//        return BaseViewModel(retrofitAPI) as T
+        return modelClass.getConstructor(RetrofitAPI::class.java, Int::class.java)
+            .newInstance(retrofitAPI, type)
     }
 }

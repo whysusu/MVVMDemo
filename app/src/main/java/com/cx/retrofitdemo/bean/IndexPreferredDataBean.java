@@ -46,6 +46,15 @@ public class IndexPreferredDataBean {
     private String AvgPriceUnit;
     private boolean IsVrHouse;
     private boolean IsTvHouse;
+    private boolean IsFollow;
+    public boolean isFollow() {
+        return IsFollow;
+    }
+
+    public IndexPreferredDataBean setFollow(boolean follow) {
+        IsFollow = follow;
+        return this;
+    }
     public boolean isTvHouse() {
         return IsTvHouse;
     }
