@@ -51,12 +51,13 @@ class FirstFragment : Fragment(), KodeinAware {
         nhViewModel.nhLiveData.observe(activity as MainActivity, Observer {
 
             var bean = it.data
-            Log.i("cx---", bean.toString())
 //            Log.i("cx---bean", bean?.get(0)?.name)
             if (it.resultState == ResultState.LOADING) {
                 contentView.content.text = "正在加载数据"
             } else if (it.resultState == ResultState.ERROR) {
                 contentView.content.text = "数据加载错误"
+            } else if (it.resultState == ResultState.EMPTY) {
+                contentView.content.text = "暂无数据"
             } else if (it.resultState == ResultState.SUCCESS) {
 //                contentView.content.text = "返回:$it"
                 contentView.content.text = bean?.get(0)?.name
@@ -73,21 +74,7 @@ class FirstFragment : Fragment(), KodeinAware {
 
         }
 
-        nhViewModel.nhDetailsLiveData.observe(activity as MainActivity, Observer {
-            when (it.resultState) {
-//                ResultState.LOADING -> {
-//                    contentView.contentDetail.text = "正在加载数据"
-//                }
-//                ResultState.ERROR -> {
-//                    contentView.contentDetail.text = "数据加载错误"
-//                }
-//                ResultState.SUCCESS -> {
-////                    contentView.contentDetail.text = "返回$it"
-//                    contentView.contentDetail.text = it.data.goodBuildings[0].name
-//                }
-            }
 
-        })
         return contentView
     }
 

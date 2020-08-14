@@ -72,7 +72,6 @@ class MainActivity : BaseActivity() {
             transaction.commit()
         }
 
-
     }
 
 }

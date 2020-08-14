@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.cx.retrofitdemo.adapter.ContentAdapter
 import com.cx.retrofitdemo.adapter.TitleAdatper
 import com.cx.retrofitdemo.bean.ResultState
+import com.cx.retrofitdemo.databinding.FragSecLayoutBinding
 import com.cx.retrofitdemo.viewmodel.MainViewModel
 import com.cx.retrofitdemo.viewmodel.MainViewModelManagerFactory
 import kotlinx.android.synthetic.main.frag_sec_layout.view.*
@@ -38,7 +40,8 @@ class SecondFragment : Fragment(), KodeinAware {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        var contentView = inflater.inflate(R.layout.frag_sec_layout, null)
+//        var contentView = inflater.inflate(R.layout.frag_sec_layout, null)
+
         //从kodein中拿到RetrofitNHManager的对象
         val retrofitAPI: RetrofitAPI by instance<RetrofitAPI>()
 
@@ -47,6 +50,17 @@ class SecondFragment : Fragment(), KodeinAware {
             activity as MainActivity,
             MainViewModelManagerFactory(retrofitAPI)
         ).get(MainViewModel::class.java)
+
+
+
+        var binding = DataBindingUtil.inflate<FragSecLayoutBinding>(
+            inflater,
+            R.layout.frag_sec_layout,
+            null,
+            false
+        )
+        binding.viewModle = nhViewModel
+        var contentView = binding.root
 
         contentView.contentRV.layoutManager = LinearLayoutManager(context)
         var contentAdapter = ContentAdapter()
@@ -65,7 +79,7 @@ class SecondFragment : Fragment(), KodeinAware {
 //                    contentView.content.text = "数据加载错误"
                 }
                 ResultState.SUCCESS -> {
-                    Log.i("cx---", "返回$it")
+//                    Log.i("cx---", "返回$it")
 //                    contentView.content.text = "返回$it"
                 }
             }
@@ -124,12 +138,12 @@ class SecondFragment : Fragment(), KodeinAware {
         view.headViewRv.adapter = headViewAdapter
         titleAdatper.addHeaderView(view)
         var headList = mutableListOf<String>("2小时", "电影", "星际穿越", "什么的")
-        headViewAdapter.setNewInstance(headList)
+        headViewAdapter.setList(headList)
 
 
         //标题相关
         nhViewModel.titleLiveData.observe(activity as MainActivity, Observer {
-            titleAdatper.setNewInstance(it)
+            titleAdatper.setList(it)
         })
 
         return contentView

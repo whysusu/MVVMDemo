@@ -11,6 +11,7 @@ import com.cx.retrofitdemo.RetrofitManager.NewHouseURl
 import com.cx.retrofitdemo.bean.BaseBean
 import com.cx.retrofitdemo.bean.IndexPreferredDataBean
 import com.cx.retrofitdemo.bean.NewHouseBean
+import com.cx.retrofitdemo.bean.ResultState
 import com.cx.retrofitdemo.modules.BASE_URL
 import com.cx.retrofitdemo.nhDetailsUrl
 import com.cx.retrofitdemo.nhUrl
@@ -28,13 +29,13 @@ import kotlin.collections.set
  * @Date: 2020/7/8 16:46
  */
 class MainViewModel constructor(retrofitAPI: RetrofitAPI) : BaseViewModel(retrofitAPI) {
-
+    var refreshing = MutableLiveData<Boolean>()
     val nhLiveData by lazy { MutableLiveData<BaseBean<MutableList<IndexPreferredDataBean>>>() }
     val esLiveData by lazy { MutableLiveData<BaseBean<MutableList<IndexPreferredDataBean>>>() }
     val czLiveData by lazy { MutableLiveData<BaseBean<MutableList<IndexPreferredDataBean>>>() }
     val titleLiveData by lazy { MutableLiveData<MutableList<String>>() }
     var titleData = mutableListOf<String>()
-    val nhDetailsLiveData by lazy { MutableLiveData<BaseBean<NewHouseBean.Data>>() }
+
     val objectType: Type =
         object : TypeToken<BaseBean<MutableList<IndexPreferredDataBean>>>() {}.type
     var baseBean = BaseBean(data = mutableListOf<IndexPreferredDataBean>())
@@ -65,6 +66,7 @@ class MainViewModel constructor(retrofitAPI: RetrofitAPI) : BaseViewModel(retrof
                 }
             Log.i("cx-----列表返回顺序", "这里返回默认值列表1")
 
+
             if (defaultListBean.data != null && defaultListBean.data.size > 0) {
                 housetype = if (defaultListBean.data[0].houseType == 2) {
                     titleData.add("二手房")
@@ -78,6 +80,8 @@ class MainViewModel constructor(retrofitAPI: RetrofitAPI) : BaseViewModel(retrof
                     2
                 }
             }
+            Log.i("cx-----titleData", "" + titleData.size)
+            Log.i("cx-----titleLiveData", "" + titleLiveData.value?.size)
 
 
             //等默认列表接口请求完成之后去请求另一个接口
@@ -92,6 +96,9 @@ class MainViewModel constructor(retrofitAPI: RetrofitAPI) : BaseViewModel(retrof
                             baseBean
                         )
                     }
+                if (otherListBean.data.size == 0) {
+                    otherListBean.resultState = ResultState.EMPTY
+                }
 
                 if (housetype == 2 && otherListBean.data != null && otherListBean.data.size > 0) {
                     titleData.add("二手房")
@@ -104,6 +111,8 @@ class MainViewModel constructor(retrofitAPI: RetrofitAPI) : BaseViewModel(retrof
                 }
             }
             Log.i("cx-----列表返回顺序", "这里返回默认值列表2")
+            Log.i("cx-----titleData", "" + titleData.size)
+            Log.i("cx-----titleLiveData", "" + titleLiveData.value?.size)
 
         }
 
@@ -117,12 +126,17 @@ class MainViewModel constructor(retrofitAPI: RetrofitAPI) : BaseViewModel(retrof
                         objectType,
                         baseBean
                     )
+                if (baseBean.data.size == 0) {
+                    baseBean.resultState = ResultState.EMPTY
+                }
                 nhLiveData.postValue(baseBean)
                 if (baseBean.data != null && baseBean.data.size > 0) {
                     titleData.add("新房")
                     titleLiveData.postValue(titleData)
                 }
                 Log.i("cx-----列表返回顺序", "这里返回新房列表")
+                Log.i("cx-----titleData", "" + titleData.size)
+                Log.i("cx-----titleLiveData", "" + titleLiveData.value?.size)
             }
 
         }
@@ -184,21 +198,13 @@ class MainViewModel constructor(retrofitAPI: RetrofitAPI) : BaseViewModel(retrof
         }
     }
 
-    //新房详情接口
-    fun getNHDetails() {
-        val objectType: Type = object : TypeToken<BaseBean<NewHouseBean.Data>>() {}.type
-        var baseBean = BaseBean(data = NewHouseBean.Data())
 
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                var parameters = HashMap<String, String>()
-                parameters["id"] = "3012"
-                var nhBean =
-                    getBaseData(NewHouseURl + nhDetailsUrl, parameters, objectType, baseBean)
-                nhDetailsLiveData.postValue(nhBean)
 
-            }
-        }
+    fun onRefresh() {
+        Log.i("cx----","好的"+123)
+        refreshing.value=true
+        getHouseListData()
+        refreshing.value=false
     }
 
 }

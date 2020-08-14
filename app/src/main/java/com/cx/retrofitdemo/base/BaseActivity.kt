@@ -19,10 +19,4 @@ abstract class BaseActivity() : AppCompatActivity(), KodeinAware {
     val parentKodein by closestKodein()
 
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
-
-
-    }
-
 }

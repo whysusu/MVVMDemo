@@ -25,6 +25,7 @@ import java.util.*
  * Created by chengxiao on 2018/10/17.
  * 工具类
  */
+
 class KotlinUtils {
     // companion object包裹范围内 属于静态方法
     companion object {
@@ -137,6 +138,7 @@ class KotlinUtils {
          * @param value
          * @return
          */
+        @JvmStatic
         fun formatNum(value: Double): String {
             try {
                 val df = DecimalFormat("###########.##")
@@ -154,6 +156,7 @@ class KotlinUtils {
          * @param d
          * @return
          */
+        @JvmStatic
         fun getCount(d: String): String {
             val bg = BigDecimal(d)
             return bg.toPlainString()

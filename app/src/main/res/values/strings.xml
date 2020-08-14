@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">RetrofitDemo</string>
+    <string name="empty">""</string>
+    <!--databinding在xml中引用字符串不能直接引用，必须将字符串放在string.xml中引用-->
 </resources>

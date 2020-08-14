@@ -7,6 +7,7 @@ import com.chad.library.adapter.base.viewholder.BaseDataBindingHolder
 import com.cx.retrofitdemo.R
 import com.cx.retrofitdemo.bean.IndexPreferredDataBean
 import com.cx.retrofitdemo.databinding.ItemContentBinding
+import com.cx.retrofitdemo.event.ContentAdapterEvent
 import com.cx.retrofitdemo.utils.KotlinUtils
 
 /**
@@ -17,6 +18,8 @@ import com.cx.retrofitdemo.utils.KotlinUtils
 class ContentAdapter :
     BaseQuickAdapter<IndexPreferredDataBean, BaseDataBindingHolder<ItemContentBinding>>(R.layout.item_content) {
 
+    var contentAdapterEvent = ContentAdapterEvent()
+
     override fun convert(
         holder: BaseDataBindingHolder<ItemContentBinding>,
         item: IndexPreferredDataBean
@@ -24,9 +27,12 @@ class ContentAdapter :
         var itemContentBinding = holder.dataBinding
         if (itemContentBinding != null) {
             itemContentBinding.houseList = item
+            itemContentBinding.contentAdapterEvent = contentAdapterEvent
             itemContentBinding.executePendingBindings()
         }
-        //是否是VR房源
+
+
+        //过于复杂的判断还是放在代码中写，放在xml中不利于阅读
         val orientation =
             if (StringUtils.isEmpty(item.orientationName)) "" else "/" + item.orientationName
         val area_sq =
