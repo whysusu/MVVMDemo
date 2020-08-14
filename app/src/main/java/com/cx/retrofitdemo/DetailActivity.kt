@@ -39,7 +39,7 @@ class DetailActivity : BaseActivity(), KodeinAware {
             DetailViewModelManagerFactory(retrofitAPI)
         ).get(DetailViewModel::class.java)
         detailViewModel.getNHDetails()
-        detailViewModel.nhDetailsLiveData.observe(this, Observer {
+        detailViewModel.detailsLiveData.observe(this, Observer {
             when (it.resultState) {
                 ResultState.LOADING -> {
                     contentTV.text = "正在加载数据"

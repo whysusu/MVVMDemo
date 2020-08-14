@@ -64,6 +64,7 @@ class MainViewModel constructor(retrofitAPI: RetrofitAPI) : BaseViewModel(retrof
                         baseBean
                     )
                 }
+            refreshing.value=false
             Log.i("cx-----列表返回顺序", "这里返回默认值列表1")
 
 
@@ -204,7 +205,7 @@ class MainViewModel constructor(retrofitAPI: RetrofitAPI) : BaseViewModel(retrof
         Log.i("cx----","好的"+123)
         refreshing.value=true
         getHouseListData()
-        refreshing.value=false
+
     }
 
 }

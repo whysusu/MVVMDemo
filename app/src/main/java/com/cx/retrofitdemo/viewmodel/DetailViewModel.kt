@@ -8,7 +8,9 @@ import com.android.tools.build.jetifier.core.utils.Log
 import com.cx.retrofitdemo.RetrofitAPI
 import com.cx.retrofitdemo.RetrofitManager
 import com.cx.retrofitdemo.bean.BaseBean
+import com.cx.retrofitdemo.bean.HouseDetail
 import com.cx.retrofitdemo.bean.NewHouseBean
+import com.cx.retrofitdemo.houseDetailsUrl
 import com.cx.retrofitdemo.nhDetailsUrl
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.Dispatchers
@@ -23,24 +25,24 @@ import java.lang.reflect.Type
  */
 class DetailViewModel constructor(retrofitAPI: RetrofitAPI) : BaseViewModel(retrofitAPI) {
 
-    val nhDetailsLiveData by lazy { MutableLiveData<BaseBean<NewHouseBean.Data>>() }
+    val detailsLiveData by lazy { MutableLiveData<BaseBean<HouseDetail.Data>>() }
 
     //新房详情接口
     fun getNHDetails() {
-        val objectType: Type = object : TypeToken<BaseBean<NewHouseBean.Data>>() {}.type
-        var baseBean = BaseBean(data = NewHouseBean.Data())
+        val objectType: Type = object : TypeToken<BaseBean<HouseDetail.Data>>() {}.type
+        var baseBean = BaseBean(data = HouseDetail.Data())
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 var parameters = HashMap<String, String>()
-                parameters["id"] = "3012"
+                parameters["id"] = "486187"
                 var nhBean =
                     getBaseData(
-                        RetrofitManager.NewHouseURl + nhDetailsUrl,
+                        RetrofitManager.baseUrl + houseDetailsUrl,
                         parameters,
                         objectType,
                         baseBean
                     )
-                nhDetailsLiveData.postValue(nhBean)
+                detailsLiveData.postValue(nhBean)
             }
         }
     }

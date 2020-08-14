@@ -16,6 +16,7 @@ import retrofit2.http.Url
 const val nhUrl = "/api/Home/SelectRecommendHouse"
 const val OptimizationHouseUrl = "api/Home/SelectOptimizationHouse"
 const val nhDetailsUrl = "/api/NewHouse/GetBuilgingInfo"
+const val houseDetailsUrl = "api/Esf/SelectAllDetail"
 
 interface RetrofitAPI {
 
