@@ -64,7 +64,6 @@ class MainViewModel constructor(retrofitAPI: RetrofitAPI) : BaseViewModel(retrof
                         baseBean
                     )
                 }
-            refreshing.value=false
             Log.i("cx-----列表返回顺序", "这里返回默认值列表1")
 
 
@@ -114,6 +113,7 @@ class MainViewModel constructor(retrofitAPI: RetrofitAPI) : BaseViewModel(retrof
             Log.i("cx-----列表返回顺序", "这里返回默认值列表2")
             Log.i("cx-----titleData", "" + titleData.size)
             Log.i("cx-----titleLiveData", "" + titleLiveData.value?.size)
+            refreshing.postValue(false)
 
         }
 

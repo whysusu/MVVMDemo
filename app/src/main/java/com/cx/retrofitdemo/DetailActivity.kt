@@ -54,7 +54,5 @@ class DetailActivity : BaseActivity(), KodeinAware {
                 }
             }
         })
-
     }
-
 }

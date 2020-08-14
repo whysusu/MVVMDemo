@@ -73,16 +73,16 @@ open class BaseViewModel(var retrofitAPI: RetrofitAPI) : ViewModel() {
 
 }
 
-
-class BaseViewModelFactory(
-    private val retrofitAPI: RetrofitAPI,
-    private val type: Int
-) : ViewModelProvider.Factory {
-
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-//        return BaseViewModel(retrofitAPI) as T
-        return modelClass.getConstructor(RetrofitAPI::class.java, Int::class.java)
-            .newInstance(retrofitAPI, type)
-    }
-}
+//
+//class BaseViewModelFactory(
+//    private val retrofitAPI: RetrofitAPI,
+//    private val type: Int
+//) : ViewModelProvider.Factory {
+//
+//    @Suppress("UNCHECKED_CAST")
+//    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+////        return BaseViewModel(retrofitAPI) as T
+//        return modelClass.getConstructor(RetrofitAPI::class.java, Int::class.java)
+//            .newInstance(retrofitAPI, type)
+//    }
+//}
